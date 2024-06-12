@@ -1,0 +1,20 @@
+<div class="todo-container">
+  <img src="../../assets/img/task-management-logo.png" alt="A todo list" />
+  <h1>To-Do List</h1>
+  <input [(ngModel)]="newTodo" placeholder="Add a new to-do" (keyup.enter)="addTodo()" />
+  <button class="add-button" (click)="addTodo()">Add</button>
+  <ul>
+    <li *ngFor="let todo of todos; let i = index">
+      <div *ngIf="editIndex !== i" class="todo-text">
+        {{ todo.todo }}
+        <button class="edit-button" (click)="editTodo(i)">Edit</button>
+        <button class="remove-button" (click)="removeTodo(todo.id)">Remove</button>
+      </div>
+      <div *ngIf="editIndex === i">
+        <input [(ngModel)]="editText" placeholder="Edit to-do" />
+        <button class="save-button" (click)="saveTodo()">Save</button>
+        <button class="cancel-button" (click)="cancelEdit()">Cancel</button>
+      </div>
+    </li>
+  </ul>
+</div>
